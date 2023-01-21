@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!--#region Colors-->
+    <Color x:Key="DarkTheme">#212121</Color>
+    <Color x:Key="LightTheme">#FFFFFF</Color>
+    <Color x:Key="DarkThemeText">#E3E9EC</Color>
+    <Color x:Key="LightThemeText">#555A60</Color>
+    <!--#Endregion-->
+
+    <!--#region Page View-->
+    <Style TargetType="Page" ApplyToDerivedTypes="True">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightTheme}, Dark={StaticResource DarkTheme}}" />
+    </Style>
+    <!--#Endregion-->
+
+    <!--#region Labels-->
+    <Style Class="LabelTextTheme" TargetType="Label">
+        <Setter Property="HorizontalTextAlignment" Value="End" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightThemeText}, Dark={StaticResource DarkThemeText}}" />
+    </Style>
+
+    <Style x:Key="LabelTextLogin" TargetType="Label">
+        <Setter Property="Margin" Value="20,0" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="TextColor" Value="#828282" />
+    </Style>
+
+    <!--#Endregion-->
+
+    <!--#region Image-->
+    <Style x:Key="ImageLogo" TargetType="Image">
+        <Setter Property="WidthRequest" Value="120" />
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="Aspect" Value="AspectFit" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+    </Style>
+    <!--#Endregion-->
+
+    <!--#region BoxView-->
+    <Style TargetType="BoxView">
+        <Setter Property="Opacity" Value=".2" />
+        <Setter Property="CornerRadius" Value="0,0,30,30" />
+        <Setter Property="BackgroundColor" Value="#000000" />
+    </Style>
+    <!--#Endregion-->
+
+      <!--#region FontImage-->
+    <Style x:Key="FontIcon" TargetType="Label">
+        <Setter Property="FontSize" Value="22" />
+        <Setter Property="TextColor" Value="#404040" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="FontFamily" Value="MaterialFontFamily" />
+    </Style>
+    <!--#Endregion-->
+
+    <!--#region Login-->
+    <Style x:Key="ContainerEntry" TargetType="Frame">
+        <Setter Property="Padding" Value="15,0" />
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="HasShadow" Value="False" />
+        <Setter Property="BackgroundColor" Value="#F1F1F1" />
+    </Style>
+
+    <Style x:Key="CustomEntry" TargetType="Entry">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="TextColor" Value="#1A1A1A" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+    </Style>
+
+     <Style x:Key="ContainerIconLogin" TargetType="Frame">
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="HasShadow" Value="False" />
+        <Setter Property="CornerRadius" Value="23" />
+        <Setter Property="WidthRequest" Value="30" />
+        <Setter Property="HeightRequest" Value="30" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="BackgroundColor" Value="#F1F1F1" />
+    </Style>
+    <!--#Endregion-->
+
+     
+
+</ResourceDictionary>
+

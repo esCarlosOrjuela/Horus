@@ -1,0 +1,83 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2545" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.4" />
+    <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="PropertyChanged.Fody" />
+    <None Remove="MVVM\" />
+    <None Remove="MVVM\View\" />
+    <None Remove="MVVM\Model\" />
+    <None Remove="MVVM\ViewModel\" />
+    <None Remove="Services\" />
+    <None Remove="Interfaces\" />
+    <None Remove="Entities\" />
+    <None Remove="Helpers\" />
+    <None Remove="Resources\" />
+    <None Remove="Resources\Image\" />
+    <None Remove="Resources\Image\logo_w.png" />
+    <None Remove="Resources\Image\instagram_g.png" />
+    <None Remove="Resources\Fonts\" />
+    <None Remove="Resources\Fonts\materialdesignicons-webfont.ttf" />
+    <None Remove="CommunityToolkit.Mvvm" />
+    <None Remove="Resources\Styles\" />
+    <None Remove="Microsoft.Extensions.Logging.Debug" />
+    <None Remove="Resources\Image\arrow_right_g.png" />
+    <None Remove="Resources\Image\arrow_right_w.png" />
+    <None Remove="Resources\Image\back_b.png" />
+    <None Remove="Resources\Image\background.jpg" />
+    <None Remove="Resources\Image\eye_b.png" />
+    <None Remove="Resources\Image\eye_none_b.png" />
+    <None Remove="Resources\Image\facebook_g.png" />
+    <None Remove="Xamarin.Forms.PancakeView" />
+    <None Remove="Helpers\CustomControls\" />
+    <None Remove="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MVVM\" />
+    <Folder Include="MVVM\View\" />
+    <Folder Include="MVVM\Model\" />
+    <Folder Include="MVVM\ViewModel\" />
+    <Folder Include="Services\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\Image\" />
+    <Folder Include="Resources\Fonts\" />
+    <Folder Include="Resources\Styles\" />
+    <Folder Include="Helpers\CustomControls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Image\logo_w.png" />
+    <EmbeddedResource Include="Resources\Image\instagram_g.png" />
+    <EmbeddedResource Include="Resources\Fonts\materialdesignicons-webfont.ttf" />
+    <EmbeddedResource Include="Resources\Image\arrow_right_g.png" />
+    <EmbeddedResource Include="Resources\Image\arrow_right_w.png" />
+    <EmbeddedResource Include="Resources\Image\back_b.png" />
+    <EmbeddedResource Include="Resources\Image\background.jpg" />
+    <EmbeddedResource Include="Resources\Image\eye_b.png" />
+    <EmbeddedResource Include="Resources\Image\eye_none_b.png" />
+    <EmbeddedResource Include="Resources\Image\facebook_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Xamarin.iOS">
+      <HintPath>..\..\..\..\..\..\..\..\..\Library\Frameworks\Xamarin.iOS.framework\Versions\16.1.1.27\lib\mono\Xamarin.iOS\Xamarin.iOS.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

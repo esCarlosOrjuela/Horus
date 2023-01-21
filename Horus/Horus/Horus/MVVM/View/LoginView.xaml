@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Images="clr-namespace:Horus.Resources.Image"
+    xmlns:ImageFont="clr-namespace:Horus.Resources.Fonts"
+    xmlns:Render="clr-namespace:Horus.Helpers.CustomControls"
+    xmlns:PanCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Class="Horus.MVVM.View.LoginView">
+
+    <Grid RowDefinitions=".4*, .6*" BackgroundColor="Transparent" >
+        <PanCake:PancakeView CornerRadius="0,0,30,30" >
+            <Image Aspect="AspectFill" Source="{Images:ImageResources background.jpg}" />
+        </PanCake:PancakeView>
+        <BoxView />
+        <StackLayout Padding="37" VerticalOptions="EndAndExpand">
+            <Label
+                FontSize="22"
+                Text="Bienvenido a"
+                TextColor="#FFFFFF" />
+            <Image Style="{StaticResource ImageLogo}" Source="{Images:ImageResources logo_w.png}" />
+        </StackLayout>
+        <Grid
+            Grid.Row="1"
+            Padding="50,27"
+            RowDefinitions="Auto,.4*,Auto,.4*,.6*,.4*,*,.3*,.4*">
+
+            <Label Text="Email" Style="{StaticResource LabelTextLogin}"/>
+            <Frame Grid.Row="1" Style="{StaticResource ContainerEntry}">
+                <Render:CustomEntry Placeholder="example@mail.com" Style="{StaticResource CustomEntry}"  />
+            </Frame>
+
+            <Label Grid.Row="2" Padding="0,10,0,0" Text="Contraseña" Style="{StaticResource LabelTextLogin}"/>
+            <Frame Grid.Row="3" Style="{StaticResource ContainerEntry}">
+                <Grid ColumnDefinitions="*,Auto">
+                    <Render:CustomEntry
+                        x:Name="txtPass"
+                        IsPassword="True"
+                        Placeholder="********"
+                        HorizontalOptions="FillAndExpand"
+                        Style="{StaticResource CustomEntry}" />
+                    <Label
+                        Grid.Column="1"
+                        HorizontalOptions="End"
+                        Style="{StaticResource FontIcon}"
+                        Text="{x:Static ImageFont:IconFont.EyeOutline}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizerEye_Tapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </Frame>
+            <Label Grid.Row="4" Text="Olvidaste tu contraseña?" VerticalOptions="Start" Style="{StaticResource LabelTextLogin}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding OnTapOptionCommand}" CommandParameter="Olvidaste tu contraseña?" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Button
+                Grid.Row="5"
+                Text="Login"
+                FontSize="16"
+                CornerRadius="20"
+                TextColor="#FFFFFF"
+                BackgroundColor="#F49390" />
+            <Grid Grid.Row="6" Margin="0,0" ColumnSpacing="50" ColumnDefinitions="*,*">
+                <Frame
+                    HorizontalOptions="End"
+                    Style="{StaticResource ContainerIconLogin}">
+                    <Image
+                        Style="{StaticResource ImageLogo}"
+                        Source="{Images:ImageResources instagram_g.png}" >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding OnTapOptionCommand}" CommandParameter="Iniciar sesión en Intagram"  />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Frame>
+                <Frame
+                    Grid.Column="1"
+                    HorizontalOptions="Start"
+                    Style="{StaticResource ContainerIconLogin}">
+                    <Image
+                        Style="{StaticResource ImageLogo}"
+                        Source="{Images:ImageResources facebook_g.png}" >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding OnTapOptionCommand}" CommandParameter="Iniciar sesión en Facebook" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Frame>
+            </Grid>
+            <BoxView Grid.Row="7" HeightRequest="1" BackgroundColor="Gray" VerticalOptions="CenterAndExpand" CornerRadius="0" />
+            <Button
+                Grid.Row="8"
+                FontSize="16"
+                CornerRadius="20"
+                Text="Registrarme"
+                TextColor="#828282"
+                TextTransform="Lowercase"
+                BackgroundColor="#F1F1F1"
+                CommandParameter="Registrarme"
+                Command="{Binding OnTapOptionCommand}" />
+
+        </Grid>
+    </Grid>
+</ContentPage>
