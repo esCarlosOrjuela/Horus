@@ -4,6 +4,19 @@
              x:Class="Horus.App">
     <Application.Resources>
         <ResourceDictionary>
+            <!--#region Item-->
+            <Color x:Key="TitleTextColorItem">#1A1A1A</Color>
+            <Color x:Key="ProgressBarColorItem">#F49390</Color>
+            <Color x:Key="GridBackgroundColorItem">#FFFFFF</Color>
+            <Color x:Key="DescriptionTextColorItem">#828282</Color>
+            <!--#Endregion-->
+
+            <!--#region ItemSelected-->
+            <Color x:Key="TextColorItemSelected">#FFFFFF</Color>
+            <Color x:Key="GridBackgroundColorItemSelected">#F49390</Color>
+            <!--#Endregion-->
+
+            <!--#Endregion-->
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/AppStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>

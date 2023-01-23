@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Horus.MVVM.View.ChallengesView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ImageFont="clr-namespace:Horus.Resources.Fonts"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    NavigationPage.HasNavigationBar="False"
+    ios:Page.UseSafeArea="True">
+
+    <ScrollView>
+        <StackLayout HorizontalOptions="Center">
+            <Label
+                FontSize="40"
+                FontFamily="MaterialFontFamily"
+                Text="{x:Static ImageFont:IconFont.ChevronLeft}" />
+            <Grid Padding="15,0" ColumnDefinitions="*,*">
+                <Label Text="Retos" Style="{StaticResource LabelChallenge}" />
+                <Label
+                    Grid.Column="1"
+                    Style="{StaticResource LabelChallengeCompleted}" >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding TotalChallengesCompled}" FontSize="14" TextColor="{StaticResource ProgressBarColorItem}" />
+                            <Span Text="/" LineHeight="1.8" FontSize="14" TextColor="#1A1A1A" />
+                            <Span Text="{Binding TotalChallenges}" LineHeight="1.8" FontSize="14" TextColor="#1A1A1A" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+            <ListView
+                    HasUnevenRows="True"
+                    SeparatorVisibility="None"
+                    CachingStrategy="RecycleElement"
+                    SelectedItem="{Binding ChallengeSelectedItem}"
+                    ItemsSource="{Binding Challenges, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="20,10"
+                                  BackgroundColor="{Binding GridBackgroundColorItem}">
+                                <Frame HasShadow="True" CornerRadius="20"  BackgroundColor="Transparent">
+                                    <Grid
+                                        ColumnDefinitions=".9*,.2*"
+                                        RowDefinitions="Auto, .3*, Auto, .1*"
+                                        BackgroundColor="Transparent" >
+                                        <Label
+                                            FontSize="16"
+                                            FontAttributes="Bold"
+                                            Text="{Binding Title}"
+                                            TextColor="{Binding TitleTextColorItem}"/>
+                                        <Label
+                                            Grid.Column="1"
+                                            FontSize="25"
+                                            HorizontalTextAlignment="End"
+                                            FontFamily="MaterialFontFamily"
+                                            Text="{x:Static ImageFont:IconFont.ChevronRight}"
+                                            TextColor="{Binding DescriptionTextColorItem}" />
+                                        <Label
+                                            Grid.Row="1"
+                                            FontSize="12"
+                                            Text="{Binding Description}"
+                                            TextColor="{Binding DescriptionTextColorItem}"/>
+                                        <Label
+                                            Grid.Row="2"
+                                            FontSize="12"
+                                            Text="{Binding AmountCompleted}"
+                                            TextColor="{Binding DescriptionTextColorItem}"/>
+                                        <Label
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            FontSize="12"
+                                            FontAttributes="Bold"
+                                            HorizontalTextAlignment="End"
+                                            Text="{Binding PercentageCompleted}"
+                                            TextColor="{Binding ProgressBarColorItem}"/>
+                                        <ProgressBar
+                                            Grid.Row="3"
+                                            Grid.ColumnSpan="2"
+                                            VerticalOptions="End"
+                                            Progress="{Binding FloatCompleted}"
+                                            ProgressColor="{Binding ProgressBarColorItem}" />
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!--<CollectionView
+                SelectionMode="None"
+                VerticalOptions="StartAndExpand"
+                VerticalScrollBarVisibility="Never"
+                ItemsUpdatingScrollMode="KeepScrollOffset"
+                ItemsSource="{Binding Challenges, Mode=TwoWay}">
+                <CollectionView.EmptyView>
+                    <Grid>
+                        <Label
+                            FontSize="16"
+                            HorizontalOptions="Center"
+                            VerticalOptions="StartAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Text="No se encontraron retosasociados a este usuario" />
+                    </Grid>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="20,10">
+                            <Frame HasShadow="True" CornerRadius="20">
+                                <Grid
+                                    BackgroundColor="#FFFFFF"
+                                    ColumnDefinitions=".9*,.2*"
+                                    RowDefinitions="Auto, .3*, Auto, .1*">
+                                    <Label
+                                        FontSize="16"
+                                        TextColor="#1A1A1A"
+                                        FontAttributes="Bold"
+                                        Text="{Binding Title}" />
+                                    <Label
+                                        Grid.Column="1"
+                                        FontSize="25"
+                                        HorizontalTextAlignment="End"
+                                        FontFamily="MaterialFontFamily"
+                                        Text="{x:Static ImageFont:IconFont.ChevronRight}" />
+                                    <Label
+                                        Grid.Row="1"
+                                        FontSize="12"
+                                        TextColor="#828282"
+                                        Text="{Binding Description}" />
+                                    <Label
+                                        Grid.Row="2"
+                                        FontSize="12"
+                                        TextColor="#828282"
+                                        Text="{Binding AmountCompleted}" />
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        FontSize="12"
+                                        FontAttributes="Bold"
+                                        TextColor="#F49390"
+                                        HorizontalTextAlignment="End"
+                                        Text="{Binding PercentageCompleted}" />
+                                    <ProgressBar
+                                        Grid.Row="3"
+                                        Grid.ColumnSpan="2"
+                                        VerticalOptions="End"
+                                        ProgressColor="#F49390"
+                                        Progress="{Binding FloatCompleted}" />
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>-->
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
+

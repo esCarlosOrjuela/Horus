@@ -2,14 +2,14 @@
 using Xamarin.Forms;
 using PropertyChanged;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Horus.MVVM.ViewModel
 {
     [AddINotifyPropertyChangedInterface]
-    public class BaseViewModel
+    public class BaseViewModel: ObservableValidator
     {
         public BaseViewModel() { }
-
 
         /// <summary>
         /// Interface abstracting platform-specific navigation.

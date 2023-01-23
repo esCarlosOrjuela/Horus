@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Horus.Helpers.PopUp;
 using Horus.Interfaces;
+using Rg.Plugins.Popup.Services;
 
 namespace Horus.Services
 {
@@ -40,6 +42,16 @@ namespace Horus.Services
         public Task ShowConfirmationAsync(string title, string message)
         {
             return App.Current.MainPage.DisplayAlert(title, message, "Ok");
+        }
+
+        public async Task ShowLoading(string message)
+        {
+            await PopupNavigation.Instance.PushAsync(new ActiviIndicator(message));
+        }
+
+        public async Task HideLoading()
+        {
+            await PopupNavigation.Instance.PopAsync(true);
         }
     }
 }

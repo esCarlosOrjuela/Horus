@@ -17,6 +17,8 @@
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="PropertyChanged.Fody" />
@@ -47,6 +49,12 @@
     <None Remove="Xamarin.Forms.PancakeView" />
     <None Remove="Helpers\CustomControls\" />
     <None Remove="Xamarin.iOS" />
+    <None Remove="Utilities\" />
+    <None Remove="Utilities\RestServices\" />
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="Entities\AnswersService\" />
+    <None Remove="Rg.Plugins.Popup" />
+    <None Remove="Helpers\PopUp\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MVVM\" />
@@ -62,6 +70,10 @@
     <Folder Include="Resources\Fonts\" />
     <Folder Include="Resources\Styles\" />
     <Folder Include="Helpers\CustomControls\" />
+    <Folder Include="Utilities\" />
+    <Folder Include="Utilities\RestServices\" />
+    <Folder Include="Entities\AnswersService\" />
+    <Folder Include="Helpers\PopUp\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Image\logo_w.png" />

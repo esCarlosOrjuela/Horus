@@ -1,11 +1,10 @@
 ﻿
 using System;
-using Xamarin.Forms;
-using Horus.MVVM.View;
-using Horus.Services;
 using Horus.Interfaces;
 using Horus.MVVM.ViewModel;
+using Horus.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Xamarin.Forms;
 
 namespace Horus
 {
@@ -19,7 +18,7 @@ namespace Horus
             Services = App.RegisterDependencyAndServices();
 
             InitializeComponent();
-            MainPage = new MVVM.View.LoginView();
+            MainPage = new NavigationPage(new MVVM.View.LoginView());
         }
 
         /// <summary>
@@ -34,10 +33,13 @@ namespace Horus
 
             #region Services
             serviceDescriptors.AddTransient<IDialogService, DialogService>();
+            serviceDescriptors.AddTransient<IChallengesService, ChallengesService>();
+            serviceDescriptors.AddTransient<IAutenticationUserService, AutenticationUserService>();
             #endregion
 
             #region ViewModels
             serviceDescriptors.AddTransient<LoginViewModel>();
+            serviceDescriptors.AddTransient<ChallengeViewModel>();
             #endregion
 
             return serviceDescriptors.BuildServiceProvider();

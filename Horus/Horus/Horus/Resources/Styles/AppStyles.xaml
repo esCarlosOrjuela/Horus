@@ -30,6 +30,18 @@
         <Setter Property="TextColor" Value="#828282" />
     </Style>
 
+    <Style x:Key="LabelChallenge" TargetType="Label">
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="TextColor" Value="#1A1A1A"/>
+    </Style>
+
+    <Style x:Key="LabelChallengeCompleted" TargetType="Label">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="TextColor" Value="#1A1A1A"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="HorizontalTextAlignment" Value="End"/>
+    </Style>
     <!--#Endregion-->
 
     <!--#region Image-->
@@ -49,7 +61,7 @@
     </Style>
     <!--#Endregion-->
 
-      <!--#region FontImage-->
+    <!--#region FontImage-->
     <Style x:Key="FontIcon" TargetType="Label">
         <Setter Property="FontSize" Value="22" />
         <Setter Property="TextColor" Value="#404040" />
@@ -72,7 +84,7 @@
         <Setter Property="BackgroundColor" Value="Transparent" />
     </Style>
 
-     <Style x:Key="ContainerIconLogin" TargetType="Frame">
+    <Style x:Key="ContainerIconLogin" TargetType="Frame">
         <Setter Property="Padding" Value="10" />
         <Setter Property="HasShadow" Value="False" />
         <Setter Property="CornerRadius" Value="23" />
@@ -83,7 +95,10 @@
     </Style>
     <!--#Endregion-->
 
-     
+    <!--#region ItemCollection-->
+
+
+
 
 </ResourceDictionary>
 

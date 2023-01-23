@@ -6,7 +6,8 @@
     xmlns:ImageFont="clr-namespace:Horus.Resources.Fonts"
     xmlns:Render="clr-namespace:Horus.Helpers.CustomControls"
     xmlns:PanCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    x:Class="Horus.MVVM.View.LoginView">
+    x:Class="Horus.MVVM.View.LoginView"
+    NavigationPage.HasNavigationBar="False">
 
     <Grid RowDefinitions=".4*, .6*" BackgroundColor="Transparent" >
         <PanCake:PancakeView CornerRadius="0,0,30,30" >
@@ -27,7 +28,10 @@
 
             <Label Text="Email" Style="{StaticResource LabelTextLogin}"/>
             <Frame Grid.Row="1" Style="{StaticResource ContainerEntry}">
-                <Render:CustomEntry Placeholder="example@mail.com" Style="{StaticResource CustomEntry}"  />
+                <Render:CustomEntry
+                    Placeholder="example@mail.com"
+                    Text="{Binding Email}"
+                    Style="{StaticResource CustomEntry}"  />
             </Frame>
 
             <Label Grid.Row="2" Padding="0,10,0,0" Text="Contraseña" Style="{StaticResource LabelTextLogin}"/>
@@ -38,6 +42,7 @@
                         IsPassword="True"
                         Placeholder="********"
                         HorizontalOptions="FillAndExpand"
+                        Text="{Binding Password}"
                         Style="{StaticResource CustomEntry}" />
                     <Label
                         Grid.Column="1"
@@ -61,7 +66,8 @@
                 FontSize="16"
                 CornerRadius="20"
                 TextColor="#FFFFFF"
-                BackgroundColor="#F49390" />
+                BackgroundColor="#F49390"
+                Command="{Binding AuthenticateUserCommand}"/>
             <Grid Grid.Row="6" Margin="0,0" ColumnSpacing="50" ColumnDefinitions="*,*">
                 <Frame
                     HorizontalOptions="End"

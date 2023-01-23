@@ -8,6 +8,8 @@ namespace Horus.Interfaces
         Task<bool> ShowAlertAsync(string title, string message, string accept, string cancel);
         Task ShowConfirmationAsync(string title, string message, string accept);
         Task ShowConfirmationAsync(string title, string message);
+        Task ShowLoading(string message);
+        Task HideLoading();
     }
 }
 
