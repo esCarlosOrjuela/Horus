@@ -45,6 +45,7 @@ namespace Horus.MVVM.ViewModel
 
         public LoginViewModel(INavigation navigation)
         {
+            Password = string.Empty;
             Navigation = navigation;
             Bugs = new ObservableCollection<string>();
             _dialogServices = App.Current.Services.GetService<IDialogService>();
@@ -68,7 +69,7 @@ namespace Horus.MVVM.ViewModel
                     foreach (var bug in Bugs)
                         error += $"\r\n{bug}";
 
-                    await Task.FromResult(_dialogServices.ShowConfirmationAsync("Información", $"{error}"));
+                    await Task.FromResult(_dialogServices.ShowConfirmationAsync("Error", $"{error}"));
                 }
                 else
                 {
@@ -85,7 +86,7 @@ namespace Horus.MVVM.ViewModel
             catch (Exception Exception)
             {
                 await Task.FromResult(_dialogServices.HideLoading());
-                await Task.FromResult(_dialogServices.ShowConfirmationAsync("Información", $"{Exception.Message}"));
+                await Task.FromResult(_dialogServices.ShowConfirmationAsync("Error", $"{Exception.Message}"));
             }
 
         }

@@ -11,6 +11,7 @@ using Horus.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Horus.Services;
 using Newtonsoft.Json;
+using Xamarin.Essentials;
 
 namespace Horus.MVVM.ViewModel
 {
@@ -27,13 +28,15 @@ namespace Horus.MVVM.ViewModel
         public int TotalChallengesCompled { get; set; }
         public ObservableCollection<ChallengeModel> Challenges { get; set; }
 
-        public ChallengeModel ChallengeSelectedItem { set { Task task = ChallengeSelectedItemCommandExecute(value); } }
+        public ICommand OnBackButtonPressedCommand => new Command(async () => await OnBackButtonPressedCommandExecute());
+        public ICommand SelectedItemCommand => new Command<ChallengeModel>((ChallengeSelected) => SelectedItemCommandExecute(ChallengeSelected));
 
-        #region Events Command
-        public ICommand ChallengeSelectedItem2
-            => new Command<ChallengeModel>(async (ChallengeSelectedItem) => await ChallengeSelectedItemCommandExecute(ChallengeSelectedItem));
+        private Task SelectedItemCommandExecute()
+        {
+            throw new NotImplementedException();
+        }
 
-        #endregion
+        //public ChallengeModel ChallengeSelectedItem { set { _ = ChallengeSelectedItemCommandExecute(value); } }
 
         public ChallengeViewModel(INavigation navigation)
         {
@@ -42,19 +45,20 @@ namespace Horus.MVVM.ViewModel
             _challengesService = App.Current.Services.GetRequiredService<IChallengesService>();
         }
 
-        private async Task ChallengeSelectedItemCommandExecute(ChallengeModel challengeSelectedItem)
+        private void SelectedItemCommandExecute(ChallengeModel challengeSelectedItem)
         {
+            string information = $"Titulo: {challengeSelectedItem.Title}\r\nDescripción: {challengeSelectedItem.Description}";
             Challenges.Clear();
             var newChallenges = JsonConvert.DeserializeObject<ObservableCollection<ChallengeModel>>(_jsonCloneObjectChallenges);
-            var updateItem = newChallenges.FirstOrDefault(x => x.Id == challengeSelectedItem.Id);
+            Challenges = new ObservableCollection<ChallengeModel>(newChallenges);
+
+            ApplyStyles(Challenges);
+            var updateItem = Challenges.FirstOrDefault(x => x.Id == challengeSelectedItem.Id);
             updateItem.TitleTextColorItem = (Color)Application.Current.Resources["TextColorItemSelected"];
             updateItem.ProgressBarColorItem = (Color)Application.Current.Resources["TextColorItemSelected"];
             updateItem.DescriptionTextColorItem = (Color)Application.Current.Resources["TextColorItemSelected"];
             updateItem.GridBackgroundColorItem = (Color)Application.Current.Resources["GridBackgroundColorItemSelected"];
 
-            Challenges = new ObservableCollection<ChallengeModel>(newChallenges);
-            TotalChallenges = Challenges.Count();
-            TotalChallengesCompled = Challenges.Where(x => x.FloatCompleted == 1).ToList().Count();
         }
 
         public async override Task OnAppearing()
@@ -66,14 +70,7 @@ namespace Horus.MVVM.ViewModel
                 TotalChallengesCompled = Challenges.Where(x => x.FloatCompleted == 1).ToList().Count();
 
                 _jsonCloneObjectChallenges = JsonConvert.SerializeObject(Challenges);
-
-                foreach (var item in Challenges)
-                {
-                    item.TitleTextColorItem = (Color)Application.Current.Resources["TitleTextColorItem"];
-                    item.ProgressBarColorItem = (Color)Application.Current.Resources["ProgressBarColorItem"];
-                    item.GridBackgroundColorItem = (Color)Application.Current.Resources["GridBackgroundColorItem"];
-                    item.DescriptionTextColorItem = (Color)Application.Current.Resources["DescriptionTextColorItem"];
-                }
+                ApplyStyles(Challenges);
                 await Task.FromResult(_dialogServices.HideLoading());
             }
             catch (Exception Exception)
@@ -81,7 +78,27 @@ namespace Horus.MVVM.ViewModel
                 await Task.FromResult(_dialogServices.HideLoading());
                 await Task.FromResult(_dialogServices.ShowConfirmationAsync("Información", $"{Exception.Message}"));
             }
+        }
 
+        private void ApplyStyles(ObservableCollection<ChallengeModel> collectionChallenges)
+        {
+            foreach (var item in Challenges)
+            {
+                item.TitleTextColorItem = (Color)Application.Current.Resources["TitleTextColorItem"];
+                item.ProgressBarColorItem = (Color)Application.Current.Resources["ProgressBarColorItem"];
+                item.GridBackgroundColorItem = (Color)Application.Current.Resources["GridBackgroundColorItem"];
+                item.DescriptionTextColorItem = (Color)Application.Current.Resources["DescriptionTextColorItem"];
+            }
+        }
+
+        public async Task OnBackButtonPressedCommandExecute()
+        {
+            Device.BeginInvokeOnMainThread(async () => {
+                var result = await _dialogServices.ShowAlertAsync("Información", $"Seguro que desea cerrar sesión?", "Aceptar", "Cancelar");
+
+                if (result)
+                    await Navigation.PopAsync();
+            });
         }
     }
 }

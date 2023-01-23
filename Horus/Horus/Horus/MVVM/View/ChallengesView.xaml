@@ -13,7 +13,11 @@
             <Label
                 FontSize="40"
                 FontFamily="MaterialFontFamily"
-                Text="{x:Static ImageFont:IconFont.ChevronLeft}" />
+                Text="{x:Static ImageFont:IconFont.ChevronLeft}" >
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OnBackButtonPressedCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
             <Grid Padding="15,0" ColumnDefinitions="*,*">
                 <Label Text="Retos" Style="{StaticResource LabelChallenge}" />
                 <Label
@@ -29,21 +33,30 @@
                 </Label>
             </Grid>
             <ListView
-                    HasUnevenRows="True"
-                    SeparatorVisibility="None"
-                    CachingStrategy="RecycleElement"
-                    SelectedItem="{Binding ChallengeSelectedItem}"
-                    ItemsSource="{Binding Challenges, Mode=TwoWay}">
+                x:Name="CollectionsChallenges"
+                HasUnevenRows="True"
+                SelectionMode="None"
+                SeparatorVisibility="None"
+                CachingStrategy="RecycleElement"
+                ItemsSource="{Binding Challenges, Mode=TwoWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid Padding="20,10"
+                            <Grid Padding="20,10">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.SelectedItemCommand, Source={x:Reference CollectionsChallenges}}" CommandParameter="{Binding .}" />
+                                </Grid.GestureRecognizers>
+                                <Frame HasShadow="True" CornerRadius="20"  
                                   BackgroundColor="{Binding GridBackgroundColorItem}">
-                                <Frame HasShadow="True" CornerRadius="20"  BackgroundColor="Transparent">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.SelectedItemCommand, Source={x:Reference CollectionsChallenges}}"  CommandParameter="{Binding .}" />
+                                    </Frame.GestureRecognizers>
                                     <Grid
                                         ColumnDefinitions=".9*,.2*"
-                                        RowDefinitions="Auto, .3*, Auto, .1*"
-                                        BackgroundColor="Transparent" >
+                                        RowDefinitions="Auto, .3*, Auto, .1*" >
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.SelectedItemCommand, Source={x:Reference CollectionsChallenges}}"  CommandParameter="{Binding .}" />
+                                        </Grid.GestureRecognizers>
                                         <Label
                                             FontSize="16"
                                             FontAttributes="Bold"

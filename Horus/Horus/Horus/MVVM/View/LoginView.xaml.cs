@@ -41,6 +41,12 @@ namespace Horus.MVVM.View
                 
         }
 
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            this.txtPass.Text = string.Empty;
+        }
+
     }
 }
 
